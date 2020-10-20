@@ -32,7 +32,7 @@ function isAllDataValid():boolean {
     if (!isValidPrice()) {
         return false;
     }
-    if(!isValidRating()) {
+    if (!isValidRating()) {
         return false;
     }
     return true;
@@ -65,7 +65,7 @@ function isValidRating():boolean {
     let rating = ratingInput.value;
 
     if (rating == "Choose a rating") {
-        displayError("Must Select an Rating");
+        displayError("Must Select a Rating");
         return false;
     }
     return true;
