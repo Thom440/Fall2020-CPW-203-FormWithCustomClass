@@ -14,7 +14,49 @@ function addVideoGame() {
     }
 }
 function isAllDataValid() {
+    if (!isValidTitle()) {
+        return false;
+    }
+    if (!isValidPrice()) {
+        return false;
+    }
+    if (!isValidRating()) {
+        return false;
+    }
     return true;
+}
+function isValidTitle() {
+    var title = getById("title");
+    var gameTitle = title.value;
+    if (gameTitle.trim() == "") {
+        displayError("Must Enter a Title");
+        return false;
+    }
+    return true;
+}
+function isValidPrice() {
+    var price = getById("price");
+    var gamePrice = parseFloat(price.value);
+    if (isNaN(gamePrice)) {
+        displayError("Price Must Be a Number");
+        return false;
+    }
+    return true;
+}
+function isValidRating() {
+    var ratingInput = getById("rating");
+    var rating = ratingInput.value;
+    if (rating == "Choose a rating") {
+        displayError("Must Select an Rating");
+        return false;
+    }
+    return true;
+}
+function displayError(message) {
+    var errorDiv = getById("validation-summary");
+    var errorMessage = document.createElement("p");
+    errorMessage.innerText = message;
+    errorDiv.appendChild(errorMessage);
 }
 function displayGame(myGame) {
     var displayDiv = getById("display");

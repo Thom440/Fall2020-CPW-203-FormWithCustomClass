@@ -24,8 +24,58 @@ function addVideoGame() {
 }
 
 // add validation code
-function isAllDataValid() {
+function isAllDataValid():boolean {
+    if (!isValidTitle()) {
+        return false;
+    }
+    if (!isValidPrice()) {
+        return false;
+    }
+    if(!isValidRating()) {
+        return false;
+    }
     return true;
+}
+
+function isValidTitle() {
+    let title = <HTMLInputElement>getById("title");
+    let gameTitle = title.value;
+
+    if (gameTitle.trim() == "") {
+        displayError("Must Enter a Title");
+        return false;
+    }
+    return true;
+}
+
+function isValidPrice():boolean {
+    let price = <HTMLInputElement>getById("price");
+    let gamePrice = parseFloat(price.value);
+
+    if (isNaN(gamePrice)) {
+        displayError("Price Must Be a Number");
+        return false;
+    }
+    return true;
+}
+
+function isValidRating():boolean {
+    let ratingInput = <HTMLSelectElement>getById("rating");
+    let rating = ratingInput.value;
+
+    if (rating == "Choose a rating") {
+        displayError("Must Select an Rating");
+        return false;
+    }
+    return true;
+}
+
+function displayError(message:string):void {
+    let errorDiv = getById("validation-summary");
+
+    let errorMessage = document.createElement("p");
+    errorMessage.innerText = message;
+    errorDiv.appendChild(errorMessage);
 }
 
 function displayGame(myGame:VideoGame):void {
