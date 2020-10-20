@@ -6,6 +6,35 @@
     <title>Add Product Form</title>
 </head>
 <body>
-    
+    <h1>Add Video Game</h1>
+    <div id="validation-summary">
+        <p>Errors go here</p>
+    </div>
+
+
+    <form>
+        <label for="title">Title</label>
+        <input type="text" id="title">
+        <br>
+
+        <label for="price">Price</label>
+        <input type="text" id="price">
+        <br>
+
+        <label for="rating">Rating</label>
+        <select id="rating">
+            <option>Choose a rating</option>
+            <option>E</option>
+            <option>T</option>
+            <option>M</option>
+        </select>
+        <br>
+
+        <label for="online">Online Only</label>
+        <input type="checkbox" id="online">
+        <br>
+
+        <input type="button" value="Add New Game">
+    </form>
 </body>
 </html>
