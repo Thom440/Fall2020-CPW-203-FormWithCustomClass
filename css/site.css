@@ -1,13 +1,19 @@
 input[type=text] {
     padding: .4em;
+    margin-bottom: 1em;
+}
+
+select {
+    margin-bottom: 1em;
 }
 
 label {
     display: inline-block;
     margin-left: 30%;
-    margin-right: 5%;
-    width: 5%;
+    margin-right: 2%;
+    width: 10%;
     text-align: left;
+    font-weight: bold;
 }
 
 input[type=button] {
@@ -22,17 +28,22 @@ h1 {
     text-align: center;
 }
 
-body {
+body main {
+    background-color: white;
     margin-left: 25%;
     margin-right: 25%;
     border: solid black 2px;
+}
+
+body {
+    background-color: black;
 }
 
 #validation-summary p {
     color: red;
 }
 
-@media  only screen and (max-width: 820px) {
+@media only screen and (max-width: 820px) {
     label {
         margin-left: 0%;
         margin-right: 3em;
