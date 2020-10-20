@@ -32,8 +32,29 @@ function displayGame(myGame:VideoGame):void {
     // TODO: Display video game below the form
 }
 
+/**
+ * Gets all game data from the form and returns it in a VideoGame object
+ */
 function getVideoGame():VideoGame {
-    // TODO: Create game
-    // use data from form
-    // return game
+    let game = new VideoGame();
+    game.title = (<HTMLInputElement>getById("title")).value;
+
+    game.price = parseFloat((<HTMLInputElement>getById("price")).value);
+
+    let ratingInput = <HTMLSelectElement>getById("rating");
+    game.rating = ratingInput.value;
+
+    let digitalOnly = <HTMLInputElement>getById("online");
+    if (digitalOnly.checked) {
+        game.isOnlineOnly = true;
+    }
+    else {
+        game.isOnlineOnly = false;
+    }
+    
+    return game;
+}
+
+function getById(id:string) {
+    return document.getElementById(id);
 }
