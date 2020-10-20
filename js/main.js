@@ -21,6 +21,9 @@ function isAllDataValid() {
     if (!isValidPrice()) {
         return false;
     }
+    if (!isValidRelease()) {
+        return false;
+    }
     if (!isValidRating()) {
         return false;
     }
@@ -44,6 +47,19 @@ function isValidPrice() {
     }
     return true;
 }
+function isValidRelease() {
+    var release = getById("release-date");
+    var gameRelease = release.value;
+    if (!isValidDate(gameRelease)) {
+        displayError("Date must be in the format MM/DD/YYYY");
+        return false;
+    }
+    return true;
+}
+function isValidDate(input) {
+    var pattern = /^\d{2}\/\d{2}\/\d{4}$/g;
+    return pattern.test(input);
+}
 function isValidRating() {
     var ratingInput = getById("rating");
     var rating = ratingInput.value;
@@ -62,7 +78,7 @@ function displayError(message) {
 function displayGame(myGame) {
     var displayDiv = getById("display");
     var gameHeading = document.createElement("h2");
-    gameHeading.innerText = myGame.title;
+    gameHeading.innerText = myGame.title + " " + myGame.release;
     var gameInfo = document.createElement("p");
     var notOnlineOnly = "";
     if (!myGame.isOnlineOnly) {
@@ -85,6 +101,7 @@ function getVideoGame() {
     else {
         game.isOnlineOnly = false;
     }
+    game.release = getById("release-date").value;
     return game;
 }
 function getById(id) {

@@ -3,6 +3,7 @@ class VideoGame {
     price:number;
     rating:string;
     isOnlineOnly:boolean;
+    release:string;
 }
 
 // test code
@@ -30,6 +31,9 @@ function isAllDataValid():boolean {
         return false;
     }
     if (!isValidPrice()) {
+        return false;
+    }
+    if (!isValidRelease()) {
         return false;
     }
     if (!isValidRating()) {
@@ -60,6 +64,22 @@ function isValidPrice():boolean {
     return true;
 }
 
+function isValidRelease():boolean {
+    let release = <HTMLInputElement>getById("release-date");
+    let gameRelease = release.value;
+
+    if (!isValidDate(gameRelease)) {
+        displayError("Date must be in the format MM/DD/YYYY");
+        return false;
+    }
+    return true;
+}
+
+function isValidDate(input:string):boolean {
+    let pattern = /^\d{2}\/\d{2}\/\d{4}$/g;
+    return pattern.test(input);
+}
+
 function isValidRating():boolean {
     let ratingInput = <HTMLSelectElement>getById("rating");
     let rating = ratingInput.value;
@@ -84,7 +104,7 @@ function displayGame(myGame:VideoGame):void {
 
     // Create <h2> with game title
     let gameHeading = document.createElement("h2");
-    gameHeading.innerText = myGame.title;
+    gameHeading.innerText = myGame.title + " " + myGame.release;
 
     // Create paragraph with game details
     let gameInfo = document.createElement("p");
@@ -123,6 +143,8 @@ function getVideoGame():VideoGame {
     else {
         game.isOnlineOnly = false;
     }
+
+    game.release = (<HTMLInputElement>getById("release-date")).value;
     
     return game;
 }
