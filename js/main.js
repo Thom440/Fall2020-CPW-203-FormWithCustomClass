@@ -17,6 +17,17 @@ function isAllDataValid() {
     return true;
 }
 function displayGame(myGame) {
+    var displayDiv = getById("display");
+    var gameHeading = document.createElement("h2");
+    gameHeading.innerText = myGame.title;
+    var gameInfo = document.createElement("p");
+    var notOnlineOnly = "";
+    if (!myGame.isOnlineOnly) {
+        notOnlineOnly = "not";
+    }
+    gameInfo.innerText = myGame.title + " has a rating of " + myGame.rating + ". It costs\n                         $" + myGame.price.toFixed(2) + ". It is " + notOnlineOnly + " online only";
+    displayDiv.appendChild(gameHeading);
+    displayDiv.appendChild(gameInfo);
 }
 function getVideoGame() {
     var game = new VideoGame();
