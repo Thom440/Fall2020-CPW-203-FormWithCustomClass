@@ -8,6 +8,7 @@ window.onload = function () {
     addBtn.onclick = addVideoGame;
 };
 function addVideoGame() {
+    clearErrors();
     if (isAllDataValid()) {
         var game = getVideoGame();
         displayGame(game);
@@ -88,4 +89,10 @@ function getVideoGame() {
 }
 function getById(id) {
     return document.getElementById(id);
+}
+function clearErrors() {
+    var errorDiv = getById("validation-summary");
+    while (errorDiv.firstChild) {
+        errorDiv.removeChild(errorDiv.firstChild);
+    }
 }

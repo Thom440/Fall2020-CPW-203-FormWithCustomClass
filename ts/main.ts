@@ -17,6 +17,7 @@ window.onload = function() {
 }
 
 function addVideoGame() {
+    clearErrors();
     if (isAllDataValid()) {
         let game = getVideoGame();
         displayGame(game);
@@ -128,4 +129,11 @@ function getVideoGame():VideoGame {
 
 function getById(id:string) {
     return document.getElementById(id);
+}
+
+function clearErrors():void {
+    let errorDiv = getById("validation-summary");
+    while (errorDiv.firstChild) {
+        errorDiv.removeChild(errorDiv.firstChild);
+    }
 }
