@@ -27,19 +27,20 @@ function addVideoGame() {
 
 // add validation code
 function isAllDataValid():boolean {
+    let isValid = true;
     if (!isValidTitle()) {
-        return false;
+        isValid = false;
     }
     if (!isValidPrice()) {
-        return false;
+        isValid = false;
     }
     if (!isValidRelease()) {
-        return false;
+        isValid = false;
     }
     if (!isValidRating()) {
-        return false;
+        isValid = false;
     }
-    return true;
+    return isValid;
 }
 
 function isValidTitle() {
@@ -84,7 +85,7 @@ function isValidRating():boolean {
     let ratingInput = <HTMLSelectElement>getById("rating");
     let rating = ratingInput.value;
 
-    if (rating == "Choose a rating") {
+    if (rating == "") {
         displayError("Must Select a Rating");
         return false;
     }

@@ -15,19 +15,20 @@ function addVideoGame() {
     }
 }
 function isAllDataValid() {
+    var isValid = true;
     if (!isValidTitle()) {
-        return false;
+        isValid = false;
     }
     if (!isValidPrice()) {
-        return false;
+        isValid = false;
     }
     if (!isValidRelease()) {
-        return false;
+        isValid = false;
     }
     if (!isValidRating()) {
-        return false;
+        isValid = false;
     }
-    return true;
+    return isValid;
 }
 function isValidTitle() {
     var title = getById("title");
@@ -63,7 +64,7 @@ function isValidDate(input) {
 function isValidRating() {
     var ratingInput = getById("rating");
     var rating = ratingInput.value;
-    if (rating == "Choose a rating") {
+    if (rating == "") {
         displayError("Must Select a Rating");
         return false;
     }
